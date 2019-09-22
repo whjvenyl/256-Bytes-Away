@@ -1,6 +1,5 @@
 /**
- * @name get
- * @description - Safely accesses deeply nested value
+ * Safely accesses deeply nested value
  * @param {string[]} props - Objects properties in chronological order
  * @param {any} def - Default value when property doesn't exist
  * @returns {any} - Either a value of nested properties or the default value
@@ -17,8 +16,7 @@ Object.prototype.get = function(props, def = {}) {
 }
 
 /**
- * @name set
- * @description - Safely sets deeply nested value
+ * Safely sets deeply nested value
  * @param {string[]} props - Objects properties in chronological order
  * @param {any} val - Value that gets set on the last property
  */

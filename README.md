@@ -8,3 +8,4 @@ The main focus of this repo is on size so the libraries listed lack sanity check
 [⛓️ Ogs](https://github.com/YamiteruXYZ/200-Bytes-Away/blob/master/Ogs.js) - [158 bytes] Safely gets and sets values on nested objects
 [🔨 Hypr](https://github.com/YamiteruXYZ/200-Bytes-Away/blob/master/Hypr.js) - [147 bytes] Stricter and smaller HyperScript replacement
 [🥝 Ev](https://github.com/YamiteruXYZ/200-Bytes-Away/blob/master/Ev.js) - [125 bytes] Absolute core of event emitting
+[😮 E](https://github.com/YamiteruXYZ/200-Bytes-Away/blob/master/E.js) - [80 bytes] Pub/sub pattern

@@ -9,7 +9,7 @@ Object.prototype.get = function(props, def = {}) {
 
 	for(let i = 0; i < props.length; i++) {
 		acc = acc[props[i]];
-		if(!acc) break;
+		if(acc === undefined) break;
 	}
 
 	return acc || def;
@@ -27,7 +27,7 @@ Object.prototype.set = function(props, val = null) {
 		let prop = props[i];
 
 		if(i === props.length - 1) acc[prop] = val;
-		else if(!acc[prop]) acc[prop] = {};
+		else if(acc[prop] === undefined) acc[prop] = {};
 
 		acc = acc[prop];  
 	}	

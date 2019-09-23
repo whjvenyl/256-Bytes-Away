@@ -1,37 +1,51 @@
 /**
  * Creates element
- * @param {string} tag - Name of a tag
- * @param {any[]} content - List of content that will be appended - 
- * @param {Object} attribs - HTML tag attributes and events
+ * @param {string} selector - selector in a fromat "tag#id.class"
+ * @param {any | any[]} content - List of content or content itself that will be appended
+ * @param {Object} attrs - HTML tag attributes and events
  * @return {HTMLElement}
  */
-function h(tag, content = [], attribs = {}) {
-    let elm = document.createElement(tag || "div");
+function h(selector, children = [], attrs = {}) {
+    let elm = "div";
+    
+    !attrs.class && (attrs.class = "");
+    !Array.isArray(children) && (children = [children]);
+
+    selector.split(/([\.#]?[^\s#.]+)/g).forEach(
+        matched => { 
+            if(matched) matched[0] === "." 
+                ? attrs.class += matched.substr(1) + ""
+                : matched[0] === "#"
+                    ? attrs.id = matched.substr(1)
+                    : elm = matched;
+        }
+    );
+
+    elm = document.createElement(elm);
  
-    for(let key in attribs) {
-        let value = attribs[key];
+    for(let key in attrs) {
+        let value = attrs[key];
 
         value.call    // check if value is function
             ? elm.addEventListener(key, value) 
             : elm.setAttribute(key, value);
     }
 
-    content.forEach(child => elm.append(child));
+    children.forEach(child => elm.append(child));
 
     return elm;
 }
 
 
-
 // Example usage
-const hello = h(0, [
-    h("h1", ["Hello world!"]),
-    h("p", ["How are you doing?"]),
-    h(0, [
-        h("button", ["Good"], { click: () => alert("That's great!") }),
-        h("button", ["Bad"], { click: () => alert("How come?") })
-        ], { class: "buttons" })
-], { class: "hello" });
+const hello = h(".hello", [
+    h("h1.title", "Hello world!"),
+    h("p.question", "How are you doing?"),
+    h(".buttons", [
+        h("button", "Good", { click: () => alert("That's great!") }),
+        h("button", "Bad", { click: () => alert("How come?") })
+        ])
+]);
 
 document.body.appendChild(hello);
 

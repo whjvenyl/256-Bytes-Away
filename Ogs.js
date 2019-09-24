@@ -9,10 +9,10 @@ Object.prototype.get = function(props, def = {}) {
 
 	for(let i = 0; i < props.length; i++) {
 		acc = acc[props[i]];
-		if(acc === undefined) break;
+		if(acc === undefined) return def;
 	}
 
-	return acc || def;
+	return acc;
 }
 
 /**

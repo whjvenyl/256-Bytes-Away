@@ -1,13 +1,18 @@
 /**
  * Creates element
  * @param {string} selector - selector in a fromat "tag#id.class"
- * @param {any | any[]} content - List of content or content itself that will be appended
- * @param {Object} attrs - HTML tag attributes and events
+ * @param {Object} attrs - HTML tag attributes and events or children
+ * @param {any | any[]} children - List of content or content itself that will be appended
  * @return {HTMLElement}
  */
-function h(selector, children = [], attrs = {}) {
+function h(selector, attrs = {}, children = []) {
     let elm = "div";
     
+    if(attrs.length) {
+        children = attrs;
+        attrs = {};
+    }
+
     !attrs.class && (attrs.class = "");
     !Array.isArray(children) && (children = [children]);
 
@@ -42,8 +47,8 @@ const hello = h(".hello", [
     h("h1.title", "Hello world!"),
     h("p.question", "How are you doing?"),
     h(".buttons", [
-        h("button", "Good", { click: () => alert("That's great!") }),
-        h("button", "Bad", { click: () => alert("How come?") })
+        h("button", { click: () => alert("That's great!") }, "Good"),
+        h("button", { click: () => alert("How come?") }, "Bad")
         ])
 ]);
 
